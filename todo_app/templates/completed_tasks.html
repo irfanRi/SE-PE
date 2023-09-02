@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container w-75">
+    <h3 class="text-center bg-primary text-white fw-medium p-2 text-uppercase display-4 fs-3 mt-3">completed task
+    </h3>
+    {% if data %}
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr class="text-center">
+                <th scope="col">Title</th>
+                <th scope="col">Description</th>
+                <th scope="col">Status</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in data %}
+            {% if item.is_Completed %}
+            <tr>
+                <th scope="row">{{item.taskTitle}}</th>
+                <td>{{item.taskDescription}}</td>
+                <td>Completed</td>
+                <td>
+                    <a href="{% url 'delete_completed_task' item.id %}"
+                        class="text-danger-emphasis text-decoration-none fs-sm fw-normal">
+                        <button class="btn btn-danger btn-sm">DELETE</button>
+                    </a>
+                </td>
+            </tr>
+            {% endif %}
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <h3 class="text-start text-capitalize display-4 fs-4 mt-3">Opps!! No task availabe</h3>
+    {% endif %}
+</div>
+{% endblock %}

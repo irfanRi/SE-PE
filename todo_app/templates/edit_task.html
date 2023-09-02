@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+{% load crispy_forms_tags %}
+<div class="container w-50 border border-1 rounded mt-3">
+    <div class="p-4 ">
+        <h3 class="text-center bg-primary text-white fw-medium p-2 text-uppercase display-4 fs-3 mt-3">edit task
+        </h3>
+        <form method="post">
+            {% csrf_token %}
+            {{form|crispy}}
+            <input type="submit" value="EDIT TASK" class="btn btn-primary text-uppercase fw-medium">
+        </form>
+    </div>
+</div>
+{% endblock %}
